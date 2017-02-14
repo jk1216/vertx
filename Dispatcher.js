@@ -7,8 +7,7 @@ var eb = vertx.eventBus();
 // -- send paragraphe to Translator
 // -- get image from http://lorempixel.com/800/600/cats/i/
 // -- send images to Resize
-// -- sleep (5)
 
 vertx.setPeriodic(1000, function (id) {
     eb.send("translater", "hello world!");
-})
+});
