@@ -14,4 +14,4 @@ Operationnel :
 	     vertx run Resize.java -cluster -cp ./javafaker-0.12.jar
 	     - Vertx Resize
 	       - recoit l'image sous forme de buffer
-	       - change le format de l'image en 100x100 et 400x400 
+	       - change le format de l'image en 100x100 et 400x400
