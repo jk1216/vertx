@@ -8,6 +8,7 @@ Operationnel :
 
 	     - Vertx Translator
 	       - recoit le texte
+	       - pour traduire j'ai trouvé l'api google mais j'ai eu la flème de l'essayer
 
 	     - Vertx Resize
 	       - recoit l'image sous forme de buffer
