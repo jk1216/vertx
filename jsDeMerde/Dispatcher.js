@@ -5,11 +5,12 @@ var eb = vertx.eventBus();
 // -- get image from http://lorempixel.com/800/600/cats/i/
 // -- send images to Resize
 
-vertx.setPeriodic(1000, function (id) {
-///    eb.send("translater", "hello world!");
-    getImageFromPixel();
-});
+getImageFromPixel();
 
+/*vertx.setPeriodic(1000, function (id) {
+    eb.send("resizer", "hello world!");
+});
+*/
 function getRandom() {
     return Math.floor(Math.random() * 10) + 1;
 }
@@ -20,11 +21,12 @@ function getImageFromPixel() {
     };
     var client = vertx.createHttpClient(options);
     client.getNow("/800/600/cats/" + getRandom() + "/", function (response) {
-        console.log(response.statusCode());
-        /*
         response.bodyHandler(function (body) {
-            eb.publish("");
+            console.log("Send");
+//            var buff = Buffer.buffer().append(body);
+//            console.log("Send");
+//            eb.send("resizer", buff);
+            console.log("Send");
         });
-        */
     });
 }
