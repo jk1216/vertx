@@ -9,5 +9,5 @@ var eb = vertx.eventBus();
 // -- send images to Resize
 
 vertx.setPeriodic(1000, function (id) {
-    eb.send("translater", "hello world!");
+    eb.send("translator", "hello world!");
 });
