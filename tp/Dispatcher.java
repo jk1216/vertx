@@ -1,9 +1,11 @@
-package vertx.tp;
+package tp;
 
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.eventbus.EventBus;
 
 import com.github.javafaker.*;
+
+import java.util.Locale;
 
 public class Dispatcher extends AbstractVerticle {
     private EventBus eb;
@@ -15,7 +17,7 @@ public class Dispatcher extends AbstractVerticle {
     @Override
     public void start() throws Exception {
         eb = vertx.eventBus();
-        vertx.setPeriodic(1000, aLong -> {
+        vertx.setPeriodic(3000, aLong -> {
             getAndSendImage();
             getAndSendFakerText();
         });
@@ -35,7 +37,7 @@ public class Dispatcher extends AbstractVerticle {
     }
 
     private void getAndSendFakerText() {
-        Faker faker = new Faker();
+        Faker faker = new Faker(Locale.ENGLISH);
         eb.publish("translator", faker.beer().malt());
     }
 }

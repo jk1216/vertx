@@ -1,4 +1,4 @@
-package vertx.tp;
+package tp;
 
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Handler;
@@ -17,7 +17,7 @@ import static java.awt.image.BufferedImage.TYPE_INT_RGB;
 public class Resize extends AbstractVerticle {
 
     public static void main(String[] args) {
-        Runner.runClusteredExample(Dispatcher.class);
+        Runner.runClusteredExample(Resize.class);
     }
 
     @Override

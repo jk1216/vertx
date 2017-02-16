@@ -1,4 +1,4 @@
-package vertx.tp;
+package tp;
 
 import io.vertx.core.Vertx;
 
