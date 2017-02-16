@@ -11,3 +11,4 @@ Operationnel :
 
 	     - Vertx Resize
 	       - recoit l'image sous forme de buffer
+	       - change le format de l'image en 100x100 et 400x400 
