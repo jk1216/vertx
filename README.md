@@ -6,7 +6,7 @@ Les sources sont dans le dossier "./tp/".
 	     - Vertx Dispatcher
 	       - Envoi une image (aléatoire) et un text faker sur le bus
 
-	     vertx run Translator.java -cluster -cp ./gson-2.8.0.jar
+	     vertx run Translator.java -cluster
 	     - Vertx Translator
 	       - recoit le texte
 	       - traduction EN -> FR OK
