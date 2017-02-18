@@ -38,6 +38,7 @@ public class Dispatcher extends AbstractVerticle {
 
     private void getAndSendFakerText() {
         Faker faker = new Faker(Locale.ENGLISH);
-        eb.publish("translator", faker.beer().malt());
+        String sourceText = "Hello, how are you, i think you are a big fat pig !";
+        eb.publish("translator", sourceText);
     }
 }
