@@ -28,9 +28,12 @@ public class Resize extends AbstractVerticle {
             Buffer b = message.body();
 
             BufferedImage bf400 = get400x400(b);
+            eb.send("database", bf400.toString());
             System.out.println("Format -> " + bf400.getWidth() + "x" + bf400.getHeight());
             BufferedImage bf100 = get100x100(b);
+            eb.send("database", bf400.toString());
             System.out.println("Format -> " + bf100.getWidth() + "x" + bf100.getHeight());
+            eb.send("database", b.toString());
         });
     }
 
