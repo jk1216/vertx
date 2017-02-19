@@ -1,4 +1,4 @@
-package tp.Resize;
+package Resize;
 
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Handler;

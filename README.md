@@ -1,6 +1,11 @@
 Chaque verticle est dans son dossier respectif. Par exemple, la verticle de traduction se trouve dans "./Translate/".
 NB: Chaque sous-dossier possède un README.
 
+Pour lancer le projet, il faut avant tout avoir les images docker "vertx/vertx3" et "vertx/vertx3-exec" que l'on obtient de la manière suivante:
+
+        docker pull vertx/vertx3
+        docker pull vertx/vertx3-exec
+
 ** Ajouter la procédure de lancement du projet ici
 
 Il suffit de lancer les verticles avec "-cluster' pour que celles-ci fonctionnent sur un même réseau (entre plusieurs machines, virtuelles ou non).

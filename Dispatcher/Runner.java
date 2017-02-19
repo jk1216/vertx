@@ -1,4 +1,4 @@
-package tp.Dispatcher;
+package Dispatcher;
 
 import io.vertx.core.DeploymentOptions;
 import io.vertx.core.Vertx;

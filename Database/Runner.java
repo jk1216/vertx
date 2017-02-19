@@ -1,4 +1,4 @@
-package Translator;
+package Database;
 
 import io.vertx.core.DeploymentOptions;
 import io.vertx.core.Vertx;
