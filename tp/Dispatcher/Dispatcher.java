@@ -1,4 +1,4 @@
-package tp;
+package tp.Dispatcher;
 
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.eventbus.EventBus;
@@ -38,7 +38,8 @@ public class Dispatcher extends AbstractVerticle {
 
     private void getAndSendFakerText() {
         Faker faker = new Faker(Locale.ENGLISH);
-        String sourceText = "Hello, how are you, i think you are a big fat pig !";
+        String sourceText = "Hi, do you think we should go to " + faker.address().city() + "? Or should we stay in " + faker.address().city() + "? I think we " + faker.hacker().verb() + " " + faker.hacker().noun() + " no ? " + faker.chuckNorris().fact();
+        System.out.println(sourceText);
         eb.publish("translator", sourceText);
     }
 }
