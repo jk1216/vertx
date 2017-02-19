@@ -1,21 +1,19 @@
 FROM vertx/vertx3
 
-ADD . /code
+ENV JAVA_OPTS "-Dfoo=bar"
 
-WORKDIR /code
-
-# Set the name of the verticle to deploy    (2)
+# Set the name of the verticle to deploy
 ENV VERTICLE_NAME Dispatcher.java
 
-# Set the location of the verticles         (3)
-ENV VERTICLE_HOME ./
+# Set the location of the verticles
+ENV VERTICLE_HOME Dispatcher
 
 EXPOSE 8080
 
-# Copy your verticle to the container       (4)
+# Copy your verticle to the container
 COPY $VERTICLE_NAME $VERTICLE_HOME/
 
-# Launch the verticle                       (5)
+# Launch the verticle
 WORKDIR $VERTICLE_HOME
 ENTRYPOINT ["sh", "-c"]
-CMD ["vertx run $VERTICLE_NAME -cp $VERTICLE_HOME/*"]
+CMD ["vertx run $VERTICLE_NAME -cluster -cp $VERTICLE_HOME/*"]
