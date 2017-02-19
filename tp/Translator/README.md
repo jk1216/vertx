@@ -1,7 +1,8 @@
-- Vertx Dispatcher
-  - Envoi une image (aléatoire) et un text faker sur le bus
-
+- Vertx Translator
+  - recoit le texte
+  - traduction EN -> FR OK
+			      
 Pour lancer la verticle seule:
 
-		vertx run Dispatcher.java -cluster -cp ./javafaker-0.12.jar
+		vertx run Translator.java -cluster
 					

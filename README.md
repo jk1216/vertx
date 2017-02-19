@@ -1,6 +1,5 @@
-Les sources sont dans le dossier "./tp/".
-
-    	    cd tp/
+Chaque verticle est dans son dossier respectif dans "./tp/". Par exemple, la verticle de traduction se trouve dans "./tp/Translate".
+NB: Chaque sous-dossier possède un README.
 
 	    vertx run Dispatcher.java -cluster -cp ./javafaker-0.12.jar
 	     - Vertx Dispatcher
