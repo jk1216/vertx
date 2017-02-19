@@ -1,4 +1,4 @@
-Chaque verticle est dans son dossier respectif dans "./tp/". Par exemple, la verticle de traduction se trouve dans "./tp/Translate".
+Chaque verticle est dans son dossier respectif. Par exemple, la verticle de traduction se trouve dans "./Translate/".
 NB: Chaque sous-dossier possède un README.
 
 ** Ajouter la procédure de lancement du projet ici
