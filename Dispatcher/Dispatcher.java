@@ -25,9 +25,9 @@ public class Dispatcher extends AbstractVerticle {
 
     private void getAndSendImage() {
         vertx.createHttpClient().getAbs("http://lorempixel.com/800/600/cats/" + getNumber() + "/", response -> {
-            System.out.println("Received response with status code " + response.statusCode());
+            // System.out.println("Received response with status code " + response.statusCode());
             response.bodyHandler(buffer -> {
-                System.out.println("Send image");
+                // System.out.println("Send image");
                 eb.publish("resizer", buffer);
             });
         }).end();
@@ -39,7 +39,7 @@ public class Dispatcher extends AbstractVerticle {
 
     private void getAndSendFakerText() {
         Faker faker = new Faker(Locale.ENGLISH);
-        System.out.println("Send text");
+        // System.out.println("Send text");
         eb.publish("translator", faker.chuckNorris().fact());
     }
 }

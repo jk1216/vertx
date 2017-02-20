@@ -44,20 +44,20 @@ public class Saver extends AbstractVerticle {
                         "english TEXT," +
                         "french TEXT)",
                 resultSetAsyncResult -> {
-          if (resultSetAsyncResult.succeeded())
-            System.out.println("Reuslt " + resultSetAsyncResult.result().toString());
-          else
-            System.out.println("Reuslt " + resultSetAsyncResult.cause());
+          // if (resultSetAsyncResult.succeeded())
+          //   System.out.println("Reuslt " + resultSetAsyncResult.result().toString());
+          // else
+          //   System.out.println("Reuslt " + resultSetAsyncResult.cause());
 
             connection.query("CREATE TABLE IF NOT EXISTS images (" +
                             "id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY," +
                             "small TEXT," +
                             "big TEXT)",
                 resultSetAsyncResult2 -> {
-                    if (resultSetAsyncResult2.succeeded())
-                        System.out.println("Reuslt " + resultSetAsyncResult2.result().toString());
-                    else
-                        System.out.println("Reuslt " + resultSetAsyncResult2.cause());
+                    // if (resultSetAsyncResult2.succeeded())
+                    //     System.out.println("Reuslt " + resultSetAsyncResult2.result().toString());
+                    // else
+                    //     System.out.println("Reuslt " + resultSetAsyncResult2.cause());
 
                     eb.consumer("dbText", (Handler<Message<JsonArray>>) message -> {
                         putText(message.body(), connection);
@@ -76,7 +76,7 @@ public class Saver extends AbstractVerticle {
         System.out.println("Fails :( !" + res.cause().toString());
       }
         mySQLClient.close();
-        System.out.println("Close !");
+        // System.out.println("Close !");
     });
   }
 
@@ -93,20 +93,20 @@ public class Saver extends AbstractVerticle {
 
       String query = "INSERT INTO images (small, big) VALUES (?, ?)";
       connection.queryWithParams(query, param, resultSetAsyncResult -> {
-          if (resultSetAsyncResult.succeeded())
-              System.out.println("Reuslt images OK");
-          else
-              System.out.println("Reuslt images: " + resultSetAsyncResult.cause());
+          // if (resultSetAsyncResult.succeeded())
+          //     System.out.println("Reuslt images OK");
+          // else
+          //     System.out.println("Reuslt images: " + resultSetAsyncResult.cause());
       });
   }
 
   private void putText(JsonArray param, SQLConnection connection) {
     String query = "INSERT INTO translation (english, french) VALUES (?, ?)";
     connection.queryWithParams(query, param, resultSetAsyncResult -> {
-          if (resultSetAsyncResult.succeeded())
-              System.out.println("Reuslt translation OK");
-          else
-              System.out.println("Reuslt translation: " + resultSetAsyncResult.cause());
+          // if (resultSetAsyncResult.succeeded())
+          //     System.out.println("Reuslt translation OK");
+          // else
+          //     System.out.println("Reuslt translation: " + resultSetAsyncResult.cause());
       });
   }
 }
