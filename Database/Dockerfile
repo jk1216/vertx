@@ -32,7 +32,7 @@ ENV VERTICLE_DB_ASYNC db-async-common_2.11-0.2.20.jar
 ENV VERTICLE_MYSQL_ASYNC mysql-async_2.11-0.2.20.jar
 ENV VERTICLE_SCALA scala-library-2.11.7.jar
 
-EXPOSE 8080
+EXPOSE 2727
 
 # Copy your verticle to the container
 COPY $VERTICLE_NAME $VERTICLE_HOME/
@@ -44,4 +44,4 @@ COPY $VERTICLE_SCALA $VERTICLE_HOME/
 # Launch the verticle
 WORKDIR $VERTICLE_HOME
 ENTRYPOINT ["sh", "-c"]
-CMD ["vertx run $VERTICLE_NAME -cluster -cp vertx-mysql-postgresql-client-3.3.3.jar:scala-library-2.11.7.jar:db-async-common_2.11-0.2.20.jar:mysql-async_2.11-0.2.20.jar"]
+CMD ["vertx run $VERTICLE_NAME -cluster -cp vertx-mysql-postgresql-client-3.3.3.jar:scala-library-2.11.7.jar:db-async-common_2.11-0.2.20.jar:mysql-async_2.11-0.2.20.jar]

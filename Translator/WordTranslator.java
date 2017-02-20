@@ -25,9 +25,7 @@ public class WordTranslator extends AbstractVerticle {
             String targetLang = "fr";
             try {
                 String msg = message.body();
-                System.out.println(msg);
                 msg = msg.replace(".", "zeub").replace("?", "zeub").replace("!", "zeub");
-                System.out.println(msg);
                 vertx.createHttpClient(new HttpClientOptions().setSsl(true).setTrustAll(true))
                         .getAbs("https://translate.googleapis.com/translate_a/single?client=gtx&sl="
                         + sourceLang + "&tl=" + targetLang + "&dt=t&q=" + URLEncoder.encode(msg, StandardCharsets.UTF_8.toString()),
@@ -43,8 +41,7 @@ public class WordTranslator extends AbstractVerticle {
                             JsonArray words = new JsonArray();
                             words.add(ja.getJsonArray(0).getJsonArray(0).getString(1));
                             words.add(ja.getJsonArray(0).getJsonArray(0).getString(0));
-                            System.out.println(">> " + words.toString());
-                           eb.send("dbText", words);
+                            eb.send("dbText", words);
                         });
                     }).end();
             } catch (UnsupportedEncodingException e) {

@@ -14,3 +14,8 @@ services:
         build: ./Resize
         ports:
             - "8484:8484"
+
+    vertx-database:
+        build: ./Database
+        ports:
+            - "2727:2727"
