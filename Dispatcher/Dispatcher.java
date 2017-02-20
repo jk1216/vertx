@@ -17,7 +17,7 @@ public class Dispatcher extends AbstractVerticle {
     @Override
     public void start() throws Exception {
         eb = vertx.eventBus();
-        vertx.setPeriodic(3000, aLong -> {
+        vertx.setPeriodic(5000, aLong -> {
             getAndSendImage();
             getAndSendFakerText();
         });
@@ -25,10 +25,11 @@ public class Dispatcher extends AbstractVerticle {
 
     private void getAndSendImage() {
         vertx.createHttpClient().getAbs("http://lorempixel.com/800/600/cats/" + getNumber() + "/", response -> {
-            System.out.println("Received response with status code " + response.statusCode());
-            response.bodyHandler(buffer ->
-                eb.publish("resizer", buffer)
-            );
+            // System.out.println("Received response with status code " + response.statusCode());
+            response.bodyHandler(buffer -> {
+                // System.out.println("Send image");
+                eb.publish("resizer", buffer);
+            });
         }).end();
     }
 
@@ -38,8 +39,7 @@ public class Dispatcher extends AbstractVerticle {
 
     private void getAndSendFakerText() {
         Faker faker = new Faker(Locale.ENGLISH);
-        String sourceText = "Hi, do you think we should go to " + faker.address().city() + "? Or should we stay in " + faker.address().city() + "? I think we " + faker.hacker().verb() + " " + faker.hacker().noun() + " no ? " + faker.chuckNorris().fact();
-        System.out.println(sourceText);
-        eb.publish("translator", sourceText);
+        // System.out.println("Send text");
+        eb.publish("translator", faker.chuckNorris().fact());
     }
 }

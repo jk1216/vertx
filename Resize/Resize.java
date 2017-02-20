@@ -43,7 +43,7 @@ public class Resize extends AbstractVerticle {
                 ja.add(ba2.toByteArray());
 
                 eb.send("dbImage", ja);
-                System.out.println("Image ok");
+                // System.out.println("Image ok");
             } catch (IOException e) {
                 e.printStackTrace();
             }
