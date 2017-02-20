@@ -1,4 +1,4 @@
-package tp;
+package WordTranslator;
 
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Handler;
@@ -24,24 +24,27 @@ public class WordTranslator extends AbstractVerticle {
             String sourceLang = "auto";
             String targetLang = "fr";
             try {
+                String msg = message.body();
+                System.out.println(msg);
+                msg = msg.replace(".", "zeub").replace("?", "zeub").replace("!", "zeub");
+                System.out.println(msg);
                 vertx.createHttpClient(new HttpClientOptions().setSsl(true).setTrustAll(true))
                         .getAbs("https://translate.googleapis.com/translate_a/single?client=gtx&sl="
-                        + sourceLang + "&tl=" + targetLang + "&dt=t&q=" + URLEncoder.encode(message.body(), StandardCharsets.UTF_8.toString()),
+                        + sourceLang + "&tl=" + targetLang + "&dt=t&q=" + URLEncoder.encode(msg, StandardCharsets.UTF_8.toString()),
                         response -> {
                         response.bodyHandler(buffer -> {
                             String data = buffer.toString();
 
-                            data = data.replace(",,,,", ",");
-                            data = data.replace(",,,", ",");
-                            data = data.replace(",,", ",");
+                            data = data.replace("zeub", ".").replace("zeub", "?").replace("zeub", "!");
+                            data = data.replace(",,,,", ",").replace(",,,", ",").replace(",,", ",");
 
                             JsonArray ja = new JsonArray(data);
 
                             JsonArray words = new JsonArray();
                             words.add(ja.getJsonArray(0).getJsonArray(0).getString(1));
                             words.add(ja.getJsonArray(0).getJsonArray(0).getString(0));
-                            System.out.println("Received response with status code " + words.toString());
-                            eb.send("dbText", words);
+                            System.out.println(">> " + words.toString());
+                           eb.send("dbText", words);
                         });
                     }).end();
             } catch (UnsupportedEncodingException e) {
