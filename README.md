@@ -2,7 +2,7 @@ Chaque verticle est dans son dossier respectif. Par exemple, la verticle de trad
 NB: Chaque sous-dossier possède un README.
 
 Pour lancer le projet:
-        docker-compose up
+        docker-compose up --build
 
 Si cela ne fonctionne pas, vérifier les README de chaque verticle pour avoir le détail de démarrage de celles-ci. Il faudra les lancer individuellements.
 Il suffit de lancer les verticles avec "-cluster' pour que celles-ci fonctionnent sur un même réseau (entre plusieurs machines, virtuelles ou non).
