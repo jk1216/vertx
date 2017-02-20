@@ -3,7 +3,7 @@ FROM ubuntu:14.04
 MAINTAINER Luc Georges
 
 # Install Java.
-RUN \
+RUN DEBIAN_FRONTEND=noninteractive \
   apt-get -y update && \
   apt-get -y upgrade && \
   apt-get install -y  software-properties-common && \
@@ -30,7 +30,7 @@ ENV VERTICLE_HOME Dispatcher
 
 ENV VERTICLE_LIB javafaker-0.12.jar
 
-EXPOSE 8080
+EXPOSE 2424
 
 # Copy your verticle to the container
 COPY $VERTICLE_NAME $VERTICLE_HOME/
@@ -40,4 +40,4 @@ COPY $VERTICLE_LIB $VERTICLE_HOME/
 # Launch the verticle
 WORKDIR $VERTICLE_HOME
 ENTRYPOINT ["sh", "-c"]
-CMD ["vertx run $VERTICLE_NAME -cluster -cp $VERTICLE_HOME/*"]
+CMD ["vertx run $VERTICLE_NAME -cluster -cp javafaker-0.12.jar"]

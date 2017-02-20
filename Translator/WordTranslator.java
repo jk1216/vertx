@@ -1,4 +1,4 @@
-package WordTranslator;
+package Translator;
 
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Handler;

@@ -3,7 +3,7 @@ FROM ubuntu:14.04
 MAINTAINER Luc Georges
 
 # Install Java.
-RUN \
+RUN DEBIAN_FRONTEND=noninteractive \
   apt-get -y update && \
   apt-get -y upgrade && \
   apt-get install -y  software-properties-common && \
@@ -26,9 +26,9 @@ ENV VERTICLE_NAME WordTranslator.java
 ENV VERTICLE_HELPER Runner.java
 
 # Set the location of the verticles
-ENV VERTICLE_HOME Resize
+ENV VERTICLE_HOME Translator
 
-EXPOSE 8080
+EXPOSE 4242
 
 # Copy your verticle to the container
 COPY $VERTICLE_NAME $VERTICLE_HOME/

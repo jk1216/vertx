@@ -1,6 +1,16 @@
 version: '2'
 services:
-  web:
-      build: ./Dispatcher
-      ports:
-       - "8080:8080"
+    vertx-dispatcher:
+        build: ./Dispatcher
+        ports:
+            - "2424:2424"
+
+    vertx-translator:
+        build: ./Translator
+        ports:
+            - "4242:4242"
+
+    vertx-resize:
+        build: ./Resize
+        ports:
+            - "8484:8484"
