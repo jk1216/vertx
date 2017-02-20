@@ -1,9 +1,5 @@
 FROM vertx/vertx3
 
-ADD . /code
-
-WORKDIR /code
-
 # Set the name of the verticle to deploy
 ENV VERTICLE_NAME Database.Saver
 
