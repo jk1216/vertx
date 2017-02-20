@@ -1,15 +1,17 @@
-package Resize;
+package tp;
 
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Handler;
 import io.vertx.core.buffer.Buffer;
 import io.vertx.core.eventbus.EventBus;
 import io.vertx.core.eventbus.Message;
+import io.vertx.core.json.JsonArray;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 import static java.awt.image.BufferedImage.TYPE_INT_RGB;
@@ -27,13 +29,24 @@ public class Resize extends AbstractVerticle {
         eb.consumer("resizer", (Handler<Message<Buffer>>) message -> {
             Buffer b = message.body();
 
-            BufferedImage bf400 = get400x400(b);
-            eb.send("database", bf400.toString());
-            System.out.println("Format -> " + bf400.getWidth() + "x" + bf400.getHeight());
-            BufferedImage bf100 = get100x100(b);
-            eb.send("database", bf400.toString());
-            System.out.println("Format -> " + bf100.getWidth() + "x" + bf100.getHeight());
-            eb.send("database", b.toString());
+            try {
+                JsonArray ja = new JsonArray();
+
+                ByteArrayOutputStream ba = new ByteArrayOutputStream();
+                BufferedImage bf400 = get400x400(b);
+                ImageIO.write(bf400, "jpg", ba);
+                ja.add(ba.toByteArray());
+
+                ByteArrayOutputStream ba2 = new ByteArrayOutputStream();
+                BufferedImage bf100 = get100x100(b);
+                ImageIO.write(bf100, "jpg", ba2);
+                ja.add(ba2.toByteArray());
+
+                eb.send("dbImage", ja);
+                System.out.println("Image ok");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         });
     }
 
